@@ -1,15 +1,30 @@
 import { useState } from 'react';
+import axios from 'axios';
+
 import Map from './Map';
 import Restaurants from './Restaurants';
+
 import locationData from './fake-data/location.json';
 import restaurantsData from './fake-data/restaurants.json';
 import map from './images/map.png';
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 function Explorer() {
   const [displayResults, setDisplayResults] = useState(false);
 
-  function handleLocationSearch(event) {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [location, setLocation] = useState({});
+
+
+  async function handleLocationSearch(event) {
     event.preventDefault();
+
+    const API = `https://us1.locationiq.com/v1/search.php?key=${API_KEY}&q=${searchQuery}&format=json`;
+
+    const response = await axios.get(API);
+
+    setLocation(response.data[0]);
     setDisplayResults(true);
   }
 
@@ -17,20 +32,21 @@ function Explorer() {
     <div id="main">
       <form onSubmit={handleLocationSearch} id="search-form">
         <label>Search for a location</label>
-        <input type="text" name="search" id="input-search" placeholder="Enter a location here" />
+        <input 
+          type="text" 
+          name="search" 
+          id="input-search" 
+          placeholder="Enter a location here" 
+          onChange={(event) => setSearchQuery(event.target.value)}/>
         <button type="submit">Explore!</button>
       </form>
 
-      {displayResults &&
-        <div>
-          <Map
-            location={locationData}
-            map={map}
-          />
-          <Restaurants
-            restaurants={restaurantsData}
-            location={locationData}
-          />
+      {displayResults && location.place_id &&
+        <div className="card p-3 mt-3">
+          <h2>{location.display_name}</h2>
+          <p>Latitude: {location.lat}</p>
+          <p>Longitude: {location.lon}</p>
+          
         </div>
       }
     </div>
