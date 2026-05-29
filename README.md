@@ -53,7 +53,10 @@ A React web app that searches cities and outputs restaurants; uses the Axios lib
     - converted `handleLocationSearch` to `async` in `Explorer.jsx`.
     - removed state, axios, API key, and asyn funct from `App.jsx` since they now will live in `Explorer.jsx`.
     - updated `displayResults` inside return statement.
-    - search results diplsy with actual data in liove deployment.
+    - search results diplsy with actual data in live deployment.
+    - commented out fake data imports in `Explorer.jsx`.
+    - added `mapURL` to produce map when searching.
+    - added `<img>` element inside return statement for results and removed `mapURL`.
     - 
 
     

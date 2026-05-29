@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-import Map from './Map';
-import Restaurants from './Restaurants';
+// import Map from './Map';
+// import Restaurants from './Restaurants';
 
-import locationData from './fake-data/location.json';
-import restaurantsData from './fake-data/restaurants.json';
-import map from './images/map.png';
+// import locationData from './fake-data/location.json';
+// import restaurantsData from './fake-data/restaurants.json';
+// import map from './images/map.png';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
+
 
 function Explorer() {
   const [displayResults, setDisplayResults] = useState(false);
@@ -36,8 +37,9 @@ function Explorer() {
           type="text" 
           name="search" 
           id="input-search" 
-          placeholder="Enter a location here" 
-          onChange={(event) => setSearchQuery(event.target.value)}/>
+          placeholder="Search for a city!" 
+          onChange={(event) => setSearchQuery(event.target.value)}
+        />
         <button type="submit">Explore!</button>
       </form>
 
@@ -46,6 +48,12 @@ function Explorer() {
           <h2>{location.display_name}</h2>
           <p>Latitude: {location.lat}</p>
           <p>Longitude: {location.lon}</p>
+
+          <img
+            src={`https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${location.lat},${location.lon}&zoom=16&size=800x500&format=png&markers=icon:large-red-cutout|${location.lat},${location.lon}`}
+            alt={`Map of ${location.display_name}`}
+            className="img-fluid mt-34 border border-primary"
+    />
           
         </div>
       }
