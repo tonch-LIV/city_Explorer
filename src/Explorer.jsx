@@ -50,9 +50,9 @@ function Explorer() {
           <p>Longitude: {location.lon}</p>
 
           <img
-            src={`https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${location.lat},${location.lon}&zoom=16&size=800x500&format=png&markers=icon:large-red-cutout|${location.lat},${location.lon}`}
+            src={`https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${location.lat},${location.lon}&zoom=13&size=800x500&format=png&markers=icon:large-red-cutout|${location.lat},${location.lon}`}
             alt={`Map of ${location.display_name}`}
-            className="img-fluid mt-34 border border-primary"
+            className="img-fluid mt-5 border border-primary"
     />
           
         </div>
