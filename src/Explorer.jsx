@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+import Weather from './Weather';
 // import Map from './Map';
 // import Restaurants from './Restaurants';
 
@@ -17,6 +18,8 @@ function Explorer() {
   const [searchQuery, setSearchQuery] = useState('');
   const [location, setLocation] = useState({});
 
+  const [weather, setWeather] = useState([]);
+
 
   async function handleLocationSearch(event) {
     event.preventDefault();
@@ -24,9 +27,15 @@ function Explorer() {
     const API = `https://us1.locationiq.com/v1/search.php?key=${API_KEY}&q=${searchQuery}&format=json`;
 
     const response = await axios.get(API);
+    const cityData = response.data[0];
 
-    setLocation(response.data[0]);
+    setLocation(cityData);
     setDisplayResults(true);
+
+    const weatherURL = `http://127.0.0.1:3001/weather?searchQuery=${searchQuery}&lat=${cityData.lat}&lon=${cityData.lon}`;
+    const weatherResponse = await axios.get(weatherURL);
+
+    setWeather(weatherResponse.data);
   }
 
   return (
@@ -44,17 +53,21 @@ function Explorer() {
       </form>
 
       {displayResults && location.place_id &&
-        <div className="card p-3 mt-3">
-          <h2>{location.display_name}</h2>
-          <p>Latitude: {location.lat}</p>
-          <p>Longitude: {location.lon}</p>
+        <div>
+          <div className="card p-3 mt-3">
+            <h2>{location.display_name}</h2>
+            <p>Latitude: {location.lat}</p>
+            <p>Longitude: {location.lon}</p>
 
-          <img
-            src={`https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${location.lat},${location.lon}&zoom=13&size=800x500&format=png&markers=icon:large-red-cutout|${location.lat},${location.lon}`}
-            alt={`Map of ${location.display_name}`}
-            className="img-fluid mt-5 border border-primary"
-    />
+            <img
+              src={`https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${location.lat},${location.lon}&zoom=13&size=800x500&format=png&markers=icon:large-red-cutout|${location.lat},${location.lon}`}
+              alt={`Map of ${location.display_name}`}
+              className="img-fluid mt-5 border border-primary"
+      />
           
+          </div>
+
+          <Weather weather={weather} />
         </div>
       }
     </div>

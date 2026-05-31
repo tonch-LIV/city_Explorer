@@ -60,6 +60,12 @@ A React web app that searches cities and outputs restaurants; uses the Axios lib
     - imported `bootstrap` to `main.jsx`.
     - tweaked map zoom in `Explorer.jsx`.
     - map functional and minimally styled; moving work to backend repo.
+  - 05.30
+    - created `Weather.jsx` component to recieve data and display forecast day and imported into `Explorer.jsx`.
+    - created `state` inside `Explorer.jsx`.
+    - added url to render weather `weatherURL`.
+    - updated `<img> element.
+    - 
 
     
     
