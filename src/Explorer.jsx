@@ -32,7 +32,7 @@ function Explorer() {
     setLocation(cityData);
     setDisplayResults(true);
 
-    const weatherURL = `http://127.0.0.1:3001/weather?searchQuery=${searchQuery}&lat=${cityData.lat}&lon=${cityData.lon}`;
+    const weatherURL = `http://localhost:3001/weather?searchQuery=${searchQuery}&lat=${cityData.lat}&lon=${cityData.lon}`;
     const weatherResponse = await axios.get(weatherURL);
 
     setWeather(weatherResponse.data);

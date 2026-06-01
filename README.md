@@ -65,7 +65,7 @@ A React web app that searches cities and outputs restaurants; uses the Axios lib
     - created `state` inside `Explorer.jsx`.
     - added url to render weather `weatherURL`.
     - updated `<img> element.
-    - 
+    - fixed search issue of weather not rendering by switching back to `localhost` from `127.0.0.1`. 
 
     
     
