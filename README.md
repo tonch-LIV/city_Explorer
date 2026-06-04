@@ -65,7 +65,16 @@ A React web app that searches cities and outputs restaurants; uses the Axios lib
     - created `state` inside `Explorer.jsx`.
     - added url to render weather `weatherURL`.
     - updated `<img> element.
-    - fixed search issue of weather not rendering by switching back to `localhost` from `127.0.0.1`. 
+  - 05.31
+    - fixed search issue of weather not rendering by switching back to `localhost` from `127.0.0.1`.
+    - created `error` statement in `Explorer.jsx`.
+  - 06.04
+    - clear old results / errors when searching someplace new in `handleLocationSearch`.
+    - wrap `weatherURL`, `weatherResponse`, and `setWeather` in `try` and create `setError` in `catch`.
+    - dispaying the `{error}` message in `Explorer.jsx`; `<div className="alert..">.
+    - hiding Weather heading when no data available.
+    - added `try/catch` for better error handling if LocationIP fails.
+    - changed `{error}` location to outside `{displayResults...}` and after `<form>`.
 
     
     

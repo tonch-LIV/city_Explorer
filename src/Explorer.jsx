@@ -19,24 +19,38 @@ function Explorer() {
   const [location, setLocation] = useState({});
 
   const [weather, setWeather] = useState([]);
+  const [error, setError] = useState('');  // display message in case or error
 
 
   async function handleLocationSearch(event) {
     event.preventDefault();
 
-    const API = `https://us1.locationiq.com/v1/search.php?key=${API_KEY}&q=${searchQuery}&format=json`;
+    setError('');
+    setWeather([]);
 
-    const response = await axios.get(API);
-    const cityData = response.data[0];
+    try {
+      const API = `https://us1.locationiq.com/v1/search.php?key=${API_KEY}&q=${searchQuery}&format=json`;
 
-    setLocation(cityData);
-    setDisplayResults(true);
+      const response = await axios.get(API);
+      const cityData = response.data[0];
 
-    const weatherURL = `http://localhost:3001/weather?searchQuery=${searchQuery}&lat=${cityData.lat}&lon=${cityData.lon}`;
-    const weatherResponse = await axios.get(weatherURL);
+      setLocation(cityData);
+      setDisplayResults(true);
 
-    setWeather(weatherResponse.data);
-  }
+      try {
+        const weatherURL = `http://localhost:3001/weather?searchQuery=${searchQuery}&lat=${cityData.lat}&lon=${cityData.lon}`;
+        const weatherResponse = await axios.get(weatherURL);
+
+        setWeather(weatherResponse.data);
+      } catch (error) {
+        setError('Weather data is not available for this city.');
+      }
+    } catch (error) {
+      setDisplayResults(false);
+      setLocation({});
+      setError('Location data is not available for this search.');
+    }
+  };
 
   return (
     <div id="main">
@@ -52,6 +66,12 @@ function Explorer() {
         <button type="submit">Explore!</button>
       </form>
 
+      {error && (
+        <div className="alert alert-warning mt-3">
+          {error}
+        </div>
+      )}
+
       {displayResults && location.place_id &&
         <div>
           <div className="card p-3 mt-3">
@@ -66,8 +86,7 @@ function Explorer() {
       />
           
           </div>
-
-          <Weather weather={weather} />
+          {weather.length > 0 && <Weather weather={weather} />}
         </div>
       }
     </div>
