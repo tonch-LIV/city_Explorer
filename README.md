@@ -75,6 +75,8 @@ A React web app that searches cities and outputs restaurants; uses the Axios lib
     - hiding Weather heading when no data available.
     - added `try/catch` for better error handling if LocationIP fails.
     - changed `{error}` location to outside `{displayResults...}` and after `<form>`.
+  - 06.15
+    - cleanup of old comments and redundant code blocks in `Explorer.jsx`.
 
     
     

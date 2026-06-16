@@ -2,12 +2,6 @@ import { useState } from 'react';
 import axios from 'axios';
 
 import Weather from './Weather';
-// import Map from './Map';
-// import Restaurants from './Restaurants';
-
-// import locationData from './fake-data/location.json';
-// import restaurantsData from './fake-data/restaurants.json';
-// import map from './images/map.png';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -19,7 +13,7 @@ function Explorer() {
   const [location, setLocation] = useState({});
 
   const [weather, setWeather] = useState([]);
-  const [error, setError] = useState('');  // display message in case or error
+  const [error, setError] = useState(''); 
 
 
   async function handleLocationSearch(event) {
@@ -38,7 +32,7 @@ function Explorer() {
       setDisplayResults(true);
 
       try {
-        const weatherURL = `http://localhost:3001/weather?searchQuery=${searchQuery}&lat=${cityData.lat}&lon=${cityData.lon}`;
+        const weatherURL = `http://localhost:3001/weather?lat=${cityData.lat}&lon=${cityData.lon}`;
         const weatherResponse = await axios.get(weatherURL);
 
         setWeather(weatherResponse.data);
@@ -50,7 +44,7 @@ function Explorer() {
       setLocation({});
       setError('Location data is not available for this search.');
     }
-  };
+  }
 
   return (
     <div id="main">
@@ -83,7 +77,7 @@ function Explorer() {
               src={`https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${location.lat},${location.lon}&zoom=13&size=800x500&format=png&markers=icon:large-red-cutout|${location.lat},${location.lon}`}
               alt={`Map of ${location.display_name}`}
               className="img-fluid mt-5 border border-primary"
-      />
+            />
           
           </div>
           {weather.length > 0 && <Weather weather={weather} />}
