@@ -77,6 +77,11 @@ A React web app that searches cities and outputs restaurants; uses the Axios lib
     - changed `{error}` location to outside `{displayResults...}` and after `<form>`.
   - 06.15
     - cleanup of old comments and redundant code blocks in `Explorer.jsx`.
+  - 06.16
+    - created `movies, setMovies` in `Explorer.jsx` and added inside `handleLocationSearch();`.
+    - created new `try ` / `catch` for movie request.
+    - created `Movies.jsx`, `Movies` function and exported it / imported on `Explorer.jsx`.
+    - rendered movies in `Explorer.jsx` in return statement.
 
     
     

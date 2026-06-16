@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 import Weather from './Weather';
+import Movies from './Movies';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -13,7 +14,10 @@ function Explorer() {
   const [location, setLocation] = useState({});
 
   const [weather, setWeather] = useState([]);
+  const [movies, setMovies] = useState([]);
+
   const [error, setError] = useState(''); 
+
 
 
   async function handleLocationSearch(event) {
@@ -21,8 +25,9 @@ function Explorer() {
 
     setError('');
     setWeather([]);
+    setMovies([]);
 
-    try {
+    try { // LocationIQ request
       const API = `https://us1.locationiq.com/v1/search.php?key=${API_KEY}&q=${searchQuery}&format=json`;
 
       const response = await axios.get(API);
@@ -31,7 +36,7 @@ function Explorer() {
       setLocation(cityData);
       setDisplayResults(true);
 
-      try {
+      try { // weather request
         const weatherURL = `http://localhost:3001/weather?lat=${cityData.lat}&lon=${cityData.lon}`;
         const weatherResponse = await axios.get(weatherURL);
 
@@ -39,7 +44,17 @@ function Explorer() {
       } catch (error) {
         setError('Weather data is not available for this city.');
       }
-    } catch (error) {
+
+      try { // movie request
+        const movieURL = `http://localhost:3001/movies?searchQuery=${searchQuery}`;
+        const movieResponse = await axios.get(movieURL);
+
+        setMovies(movieResponse.data);
+      } catch (error) {
+        setError('Films do not exist in this area; Desist all activities citizen!')
+      }
+
+    } catch (error) { // Location error
       setDisplayResults(false);
       setLocation({});
       setError('Location data is not available for this search.');
@@ -81,6 +96,7 @@ function Explorer() {
           
           </div>
           {weather.length > 0 && <Weather weather={weather} />}
+          {movies.length > 0 && <Movies movies={movies} />}
         </div>
       }
     </div>
