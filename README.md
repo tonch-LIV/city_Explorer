@@ -82,6 +82,8 @@ A React web app that searches cities and outputs restaurants; uses the Axios lib
     - created new `try ` / `catch` for movie request.
     - created `Movies.jsx`, `Movies` function and exported it / imported on `Explorer.jsx`.
     - rendered movies in `Explorer.jsx` in return statement.
+    - nested `<img>` inside `movie.image_url`; `Movies.jsx`.
+    - 
 
     
     

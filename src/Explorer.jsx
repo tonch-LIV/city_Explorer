@@ -51,7 +51,7 @@ function Explorer() {
 
         setMovies(movieResponse.data);
       } catch (error) {
-        setError('Films do not exist in this area; Desist all activities citizen!')
+        setError('Films do not exist in this area; Desist all activities citizen!');
       }
 
     } catch (error) { // Location error

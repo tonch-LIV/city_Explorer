@@ -14,11 +14,13 @@ function Movies(props) {
           <p>Popularity: {movie.popularity}</p>
           <p>Released on: {movie.released_on}</p>
 
-          <img
-            src={movie.image_url}
-            alt={`Poster for ${movie.title}`}
-            className="img-fluid"
-          />
+          {movie.image_url && (
+            <img
+              src={movie.image_url}
+              alt={`Poster for ${movie.title}`}
+              className="img-fluid"
+            />
+          )}
         </div>
       ))}
     </section>
