@@ -1,4 +1,24 @@
 
+function Movie(props) {
+  return (
+    <div className="card p-3 mt-3">
+      <h4>{props.movie.title}</h4>
+      <p>{props.movie.overview}</p>
+      <p>Average Votes: {props.movie.average_votes}</p>
+      <p>Total Votes: {props.movie.total_votes}</p>
+      <p>Popularity: {props.movie.popularity}</p>
+      <p>Released on: {props.movie.released_on}</p>
+
+      {props.movie.image_url && (
+        <img
+          src={props.movie.image_url}
+          alt={`Poster for ${props.movie.title}`}
+          className="img-fluid"
+        />
+      )}
+    </div>
+  );
+}
 
 function Movies(props) {
   return (
@@ -6,22 +26,7 @@ function Movies(props) {
       <h3>Movies</h3>
 
       {props.movies.map((movie) => (
-        <div className="card p-3 mt-3" key={movie.title}>
-          <h4>{movie.title}</h4>
-          <p>{movie.overview}</p>
-          <p>Average Votes: {movie.average_votes}</p>
-          <p>Total Votes: {movie.total_votes}</p>
-          <p>Popularity: {movie.popularity}</p>
-          <p>Released on: {movie.released_on}</p>
-
-          {movie.image_url && (
-            <img
-              src={movie.image_url}
-              alt={`Poster for ${movie.title}`}
-              className="img-fluid"
-            />
-          )}
-        </div>
+        <Movie movie={movie} key={movie.title} />
       ))}
     </section>
   );

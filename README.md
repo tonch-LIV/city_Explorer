@@ -83,8 +83,9 @@ A React web app that searches cities and outputs restaurants; uses the Axios lib
     - created `Movies.jsx`, `Movies` function and exported it / imported on `Explorer.jsx`.
     - rendered movies in `Explorer.jsx` in return statement.
     - nested `<img>` inside `movie.image_url`; `Movies.jsx`.
-    - 
-
+  - 06.18
+    - created `WeatherDay` and updated `Weather` functions (split displaying the section and day cards); `Weather.jsx`.
+    - created `Movie` and updated `Movies` functions (split displaying whole movie section and individual movie cards); `Movies.jsx`.
     
     
 ## Time Estimate
