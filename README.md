@@ -20,22 +20,42 @@ If you are developing a production application, we recommend using TypeScript wi
 # Project Name
 
 **Author**: Antonio G.P.
-**Version**: 1.0.5
+**Version**: 2.0.0
 
 ## Overview
-A React web app that searches cities and outputs restaurants; uses the Axios library; makes requests for data from a third-party API.
+
+City Explorer is a React application that allows users to search for a city and view location information, a static map, weather forecasts, and related movies.
+
+The frontend collects the user's city search, requests location data from LocationIQ, then sends the location information to the backend server for weather and movie data.
 
 ## Getting Started
 
-- create repo on github,
-- build app with vite,
-- sign up for locationIQ API
-- enter `.env` into `.gitignore` file,
-- enter API token on `.env`,
-- 
+1. Clone the repository.
+2. Install dependencies:
+
+   ```bash
+   npm install
+3. Create a .env file with: `VITE_API_KEY=your_locationiq_key`
+4. Start the frontend: `npm run dev`
+5. Make sure the backend server is also running on: `http://localhost:3001`
+
 ## Architecture
 
-- React (jsx, state, components,), npm, axios, bootstrap, react-bootstrap, VS Code (markdown, jsx, .json, html, eslintrc), WSL Ubuntu, netlify, trello, 
+This frontend uses:  
+React.  
+Vite.  
+Axios.  
+Bootstrap.  
+LocationIQ API.  
+
+## Features
+
+Search for a city.  
+Display city name, latitude, and longitude.  
+Display a static map.  
+Display weather forecast data from the backend.  
+Display movie data from the backend.  
+Show error messages when data is unavailable.  
 
 ## Changelog
 
@@ -86,8 +106,16 @@ A React web app that searches cities and outputs restaurants; uses the Axios lib
   - 06.18
     - created `WeatherDay` and updated `Weather` functions (split displaying the section and day cards); `Weather.jsx`.
     - created `Movie` and updated `Movies` functions (split displaying whole movie section and individual movie cards); `Movies.jsx`.
-    - minor cleanup.    
+    - minor cleanup. 
+    - README polish.   
     
+## Credit and Collaborations
+
+LocationIQ  
+WeatherBit  
+The Movie Database API  
+Code Fellows course materials  
+
 ## Time Estimate
 
 For each of the main features listed below, make an estimate of the time it will take you to complete the feature, and record your start and finish times for that feature:
