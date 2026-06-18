@@ -18,8 +18,6 @@ function Explorer() {
 
   const [error, setError] = useState(''); 
 
-
-
   async function handleLocationSearch(event) {
     event.preventDefault();
 

@@ -86,7 +86,7 @@ A React web app that searches cities and outputs restaurants; uses the Axios lib
   - 06.18
     - created `WeatherDay` and updated `Weather` functions (split displaying the section and day cards); `Weather.jsx`.
     - created `Movie` and updated `Movies` functions (split displaying whole movie section and individual movie cards); `Movies.jsx`.
-    
+    - minor cleanup.    
     
 ## Time Estimate
 

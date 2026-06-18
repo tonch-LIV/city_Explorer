@@ -1,5 +1,3 @@
-
-
 function WeatherDay(props) {
   return (
     <div className="card p-3 mt-3">
